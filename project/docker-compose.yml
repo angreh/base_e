@@ -1,0 +1,15 @@
+version: "3"
+
+services:
+  eff-app-postgres:
+    container_name: eff-app-postgres
+    image: "postgres:14.2"
+    ports:
+      - "5432:5432"
+    user: "1000:1000"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: effort_app
+    volumes:
+      - ./db-data/:/var/lib/postgresql/data/

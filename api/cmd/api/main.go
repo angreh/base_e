@@ -7,11 +7,14 @@ import (
 
 	"sibgreh/effort/internal/repositories"
 	"sibgreh/effort/internal/router"
+	"sibgreh/effort/pkg/db"
 )
 
 const port = 8080
+const DSN = "host=localhost port=5432 user=postgres password=password dbname=effort_app sslmode=disable timezone=UTC connect_timeout=5"
 
 func main() {
+	db.Init(DSN)
 	repositories.Init()
 	appRouter := router.Init()
 

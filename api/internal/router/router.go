@@ -17,6 +17,7 @@ func Init() http.Handler {
 	mux.Use(enableCORS)
 
 	defineHomeRoutes()
+	defineActionRoutes()
 
 	http.Handle("/", mux)
 

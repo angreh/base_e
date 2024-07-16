@@ -25,9 +25,12 @@ dist-ssr
 
 tmp/*
 !tmp/.keep
-project/mirror/response_types.ts
-project/mirror/internal/repositories/response_types/*
-!project/mirror/internal/repositories/response_types/.keep
-web/src/types/response_types.ts
+project/mirror/shared_types.ts
+project/mirror/internal/repositories/shared_types/*
+!project/mirror/internal/repositories/shared_types/.keep
+web/src/types/shared_types.ts
 
 TODO.md
+db-data
+logs/*
+!logs/.keep

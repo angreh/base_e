@@ -1,7 +1,7 @@
 package repositories
 
 import (
-	t "sibgreh/effort/internal/repositories/response_types"
+	t "sibgreh/effort/internal/repositories/shared_types"
 )
 
 type HomeRepository struct {

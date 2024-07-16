@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"log"
 
-	t "sibgreh/project/internal/repositories/response_types"
+	t "sibgreh/project/internal/repositories/shared_types"
 
 	"go.trulyao.dev/mirror"
 	"go.trulyao.dev/mirror/config"
@@ -15,7 +15,7 @@ func main() {
 
 	gt := mirror.New(config.Config{
 		Enabled:           mirror.Bool(true),
-		OutputFile:        mirror.String("response_types.ts"),
+		OutputFile:        mirror.String("shared_types.ts"),
 		UseTypeForObjects: mirror.Bool(true),
 		ExpandObjectTypes: mirror.Bool(true),
 	})
@@ -39,7 +39,7 @@ func main() {
 	// }
 
 	// ===> As a group
-	gt.Register(t.HomeResponse{})
+	gt.Register(t.HomeResponse{}, t.Action{})
 
 	// ===> generate types and save to the file
 	err := gt.Execute(true)

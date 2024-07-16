@@ -6,14 +6,16 @@ import (
 )
 
 type RepositoryRegistry struct {
-	Home interfaces.HomeRepository
+	Home   interfaces.HomeRepository
+	Action interfaces.ActionRepository
 }
 
 var repo *RepositoryRegistry
 
 func Init() {
 	repo = &RepositoryRegistry{
-		Home: &postgres.HomeRepository{},
+		Home:   &postgres.HomeRepository{},
+		Action: &postgres.ActionRepository{},
 	}
 }
 
