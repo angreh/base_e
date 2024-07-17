@@ -22,12 +22,19 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
 export const ActionCreatePage = () => {
   const [value, setValue] = useState<number>(1);
   const [importance, setImportance] = useState<number>(1);
   const [emotionalTax, setEmotionalTax] = useState<number>(1);
+
   const [date, setDate] = useState<Date>();
   const [endDate, setEndDate] = useState<Date>();
 

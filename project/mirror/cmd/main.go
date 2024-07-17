@@ -39,7 +39,7 @@ func main() {
 	// }
 
 	// ===> As a group
-	gt.Register(t.HomeResponse{}, t.Action{})
+	gt.Register(t.HomeResponse{}, t.Action{}, t.User{})
 
 	// ===> generate types and save to the file
 	err := gt.Execute(true)

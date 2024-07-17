@@ -18,6 +18,7 @@ func Init() http.Handler {
 
 	defineHomeRoutes()
 	defineActionRoutes()
+	defineUserRoutes()
 
 	http.Handle("/", mux)
 

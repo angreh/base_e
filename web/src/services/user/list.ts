@@ -2,14 +2,14 @@ import axios from "axios";
 import { useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 
-import { useActionStore } from "@/store/action";
 import { JSONResponse } from "@/types/api";
-import { Action } from "@/types/shared_types";
+import { User } from "@/types/shared_types";
+import { useUserStore } from "@/store/user";
 
-export const list = async (): Promise<Action[]> => {
+export const list = async (): Promise<User[]> => {
   try {
-    const result = await axios.get<JSONResponse<Action[]>>(
-      "http://localhost:8080/action"
+    const result = await axios.get<JSONResponse<User[]>>(
+      "http://localhost:8080/user"
     );
     return result.data.content!;
   } catch (error) {
@@ -19,10 +19,10 @@ export const list = async (): Promise<Action[]> => {
 };
 
 export const useList = () => {
-  const { setList } = useActionStore();
+  const { setList } = useUserStore();
 
   const { data, isPending, isError } = useQuery({
-    queryKey: ["actions"],
+    queryKey: ["users"],
     queryFn: list,
   });
 

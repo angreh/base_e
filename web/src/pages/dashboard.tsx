@@ -1,3 +1,4 @@
+import { Users } from "@/components/pages/dashboard/Users";
 import { Actions } from "@/components/pages/dashboard/actions";
 import { Calendar } from "@/components/pages/dashboard/calendar";
 import { CheckIns } from "@/components/pages/dashboard/checkIns";
@@ -8,6 +9,7 @@ import { PageHolder } from "@/components/ui/pageHolder";
 export const DashboardPage = () => {
   return (
     <PageHolder>
+      <Users />
       <Actions />
       <Reports />
       <Logs />
