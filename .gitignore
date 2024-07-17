@@ -29,7 +29,6 @@ project/mirror/shared_types.ts
 project/mirror/internal/repositories/shared_types/*
 !project/mirror/internal/repositories/shared_types/.keep
 web/src/types/shared_types.ts
-api
 
 TODO.md
 db-data

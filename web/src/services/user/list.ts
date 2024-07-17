@@ -18,10 +18,14 @@ export const list = async (): Promise<User[]> => {
   }
 };
 
-export const useList = () => {
+export const useList = (): {
+  isPending: boolean;
+  isError: boolean;
+  refetch: Function;
+} => {
   const { setList } = useUserStore();
 
-  const { data, isPending, isError } = useQuery({
+  const { data, isPending, isError, refetch } = useQuery({
     queryKey: ["users"],
     queryFn: list,
   });
@@ -32,5 +36,5 @@ export const useList = () => {
     }
   }, [data]);
 
-  return { isPending, isError };
+  return { isPending, isError, refetch };
 };
