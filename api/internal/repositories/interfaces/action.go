@@ -7,4 +7,5 @@ import (
 type ActionRepository interface {
 	List() ([]*t.Action, error)
 	Create(action *t.Action, userID int) int
+	Delete(actionID int) bool
 }

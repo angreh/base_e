@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect } from "react";
-import { useQuery } from "@tanstack/react-query";
+import { UseQueryResult, useQuery } from "@tanstack/react-query";
 
 import { useActionStore } from "@/store/action";
 import { JSONResponse } from "@/types/api";
@@ -18,10 +18,14 @@ export const list = async (): Promise<Action[]> => {
   }
 };
 
-export const useList = () => {
+export const useList = ():{
+  isPending: boolean;
+  isError: boolean;
+  refetch: () => void;
+} => {
   const { setList } = useActionStore();
 
-  const { data, isPending, isError } = useQuery({
+  const { data, isPending, isError, refetch } = useQuery({
     queryKey: ["actions"],
     queryFn: list,
   });
@@ -32,5 +36,5 @@ export const useList = () => {
     }
   }, [data]);
 
-  return { isPending, isError };
+  return { isPending, isError, refetch };
 };

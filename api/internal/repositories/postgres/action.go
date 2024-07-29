@@ -75,3 +75,36 @@ func (r *ActionRepository) Create(action *t.Action, userID int) int {
 
 	return newID
 }
+
+func (r *ActionRepository) Delete(actionID int) bool {
+	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+	defer cancel()
+
+	tx, err := db.CON.BeginTx(ctx, nil)
+	if err != nil {
+		log.Println("error starting transaction", err)
+		return false
+	}
+
+	query := "DELETE FROM rel_tasks_users WHERE task_id = $1"
+	_, err = tx.ExecContext(ctx, query, actionID)
+	if err != nil {
+		log.Println("error deleting action relation", err)
+		return false
+	}
+
+	query = "DELETE FROM tasks WHERE id = $1"
+	_, err = tx.ExecContext(ctx, query, actionID)
+	if err != nil {
+		log.Println("error deleting action", err)
+		return false
+	}
+
+	err = tx.Commit()
+	if err != nil {
+		log.Println("error commiting transaction", err)
+		return false
+	}
+
+	return true
+}
