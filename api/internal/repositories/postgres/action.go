@@ -39,3 +39,39 @@ func (r *ActionRepository) List() ([]*t.Action, error) {
 
 	return actions, nil
 }
+
+func (r *ActionRepository) Create(action *t.Action, userID int) int {
+	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+	defer cancel()
+
+	tx, err := db.CON.BeginTx(ctx, nil)
+	if err != nil {
+		log.Println("error starting transaction", err)
+		return 0
+	}
+
+	var newID int
+	query := "INSERT INTO tasks (title,difficulty,importance,emotional_tax) VALUES ($1,$2,$3,$4) RETURNING id"
+	err = tx.QueryRowContext(ctx, query, action.Title, action.Difficulty, action.Importance, action.EmotionalTax).Scan(&newID)
+	if err != nil {
+		tx.Rollback()
+		log.Println("error inserting user", err)
+		return 0
+	}
+
+	query = "INSERT INTO rel_tasks_users (user_id, task_id) VALUES ($1, $2)"
+	_, err = tx.ExecContext(ctx, query, userID, newID)
+	if err != nil {
+		tx.Rollback()
+		log.Println("error inserting user relation", err)
+		return 0
+	}
+
+	err = tx.Commit()
+	if err != nil {
+		log.Println("error commiting transaction", err)
+		return 0
+	}
+
+	return newID
+}

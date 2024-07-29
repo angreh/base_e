@@ -23,12 +23,14 @@ dist-ssr
 *.sln
 *.sw?
 
-tmp/*
-!tmp/.keep
+api/tmp/*
+api/tmp/api
+!api/tmp/.keep
 project/mirror/shared_types.ts
 project/mirror/internal/repositories/shared_types/*
 !project/mirror/internal/repositories/shared_types/.keep
 web/src/types/shared_types.ts
+
 
 TODO.md
 db-data

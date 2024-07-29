@@ -9,8 +9,8 @@ type Action struct {
 	Title        string    `json:"title"`
 	Description  string    `json:"description,omitempty"`
 	Duration     int32     `json:"duration,omitempty"`
-	Difficult    int8      `json:"difficulty,omitempty"`
-	Importance   int8      `json:"impotance,omitempty"`
+	Difficulty   int8      `json:"difficulty,omitempty"`
+	Importance   int8      `json:"importance,omitempty"`
 	EmotionalTax int8      `json:"emotional_tax,omitempty"`
 	Priority     int8      `json:"priority,omitempty"`
 	StartDate    time.Time `json:"start_date,omitempty"`
